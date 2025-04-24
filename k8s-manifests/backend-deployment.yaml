@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend-deployment
+  labels:
+    app: todo
+    tier: backend
+spec:
+  replicas: 1 # Chcemy jedną instancję backendu
+  selector:
+    matchLabels:
+      app: todo
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: todo
+        tier: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: my-todo-backend:latest # Nazwa obrazu Dockera, który zbudowaliśmy
+        imagePullPolicy: IfNotPresent # Kubelet nie będzie próbował pobierać obrazu z zewnętrznego repo, jeśli jest lokalnie
+        ports:
+        - containerPort: 5000 # Port, na którym aplikacja działa w kontenerze

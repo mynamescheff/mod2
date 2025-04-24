@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend-deployment
+  labels:
+    app: todo
+    tier: frontend
+spec:
+  replicas: 1 # Chcemy jedną instancję frontendu
+  selector:
+    matchLabels:
+      app: todo
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: todo
+        tier: frontend
+    spec:
+      containers:
+      - name: frontend-container
+        image: my-todo-frontend:latest # Nazwa obrazu Dockera, który zbudowaliśmy
+        imagePullPolicy: IfNotPresent # Użyj lokalnego obrazu
+        ports:
+        - containerPort: 80 # Port, na którym Nginx działa w kontenerze

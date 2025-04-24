@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-frontend-service
+  labels:
+    app: todo
+    tier: frontend
+spec:
+  selector:
+    app: todo # Serwis kieruje ruch do Podów z tą etykietą
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80 # Port serwisu (wewnątrz klastra)
+      targetPort: 80 # Port kontenera, na który ma być przekierowany ruch
+  type: NodePort # Umożliwia dostęp do serwisu z zewnątrz klastra

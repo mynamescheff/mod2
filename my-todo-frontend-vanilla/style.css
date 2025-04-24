@@ -1,0 +1,18 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: blue;
+}
+
+#task-form {
+    margin-bottom: 20px;
+}
+
+#tasks-list {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+#tasks-list li {
+    margin-bottom: 5px;
+}

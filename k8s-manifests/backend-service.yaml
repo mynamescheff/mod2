@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-backend-service
+  labels:
+    app: todo
+    tier: backend
+spec:
+  selector:
+    app: todo
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 5000      # Port Serwisu w klastrze
+      targetPort: 5000 # Port kontenera
+      # nodePort: 30005 # Opcjonalnie, można jawnie określić port NodePort (musi być z zakresu 30000-32767)
+  type: NodePort # <--- ZMIENIAMY Z ClusterIP NA NodePort
